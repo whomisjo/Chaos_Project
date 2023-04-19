@@ -70,7 +70,7 @@ int main()
 						vertices.push_back(mousePos);			// draws vertices
 						
 
-						cout << "Vertice " << j + 1 << ": (" << vertices[j].x << ", " << vertices[j].y << ")" << endl;
+						cout << "Vertex " << j + 1 << ": (" << vertices[j].x << ", " << vertices[j].y << ")" << endl;
 						j += 1;
 
 						if (vertices.size() == 3)
@@ -85,7 +85,7 @@ int main()
 					}
 					else
 					{
-						for (j = 0; j < 10; j++)
+						for (j = 0; j < 200; j++)
 						{
 							if (i == 3) dot.setPosition(mousePos);				// draws inside dots, lots of instances per click to make it fast, i value?
 							i += 1;

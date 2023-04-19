@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <random>
+#include <sstream>
 
 using namespace sf;
 using namespace std;
@@ -27,7 +28,8 @@ int main()
 	text2.setPosition(0, 30);
 
 	bool start = false;						//variables
-	int i = 0;
+	int i = 0;  //click counter
+	int j = 0; //corner counter
 	int rngNum = 0;
 	sf::Event event;
 	std::vector<sf::Vector2f> vertices;
@@ -66,6 +68,11 @@ int main()
 					if (!start)
 					{
 						vertices.push_back(mousePos);			// draws vertices
+						
+
+						cout << "Vertice " << j + 1 << ": (" << vertices[j].x << ", " << vertices[j].y << ")" << endl;
+						j += 1;
+
 						if (vertices.size() == 3)
 						{
 							for (i = 0; i < 3; i++)
@@ -78,26 +85,16 @@ int main()
 					}
 					else
 					{
-						if (i == 3) dot.setPosition(mousePos);				// draws inside dots, lots of instances per click to make it fast, i value?
-						i += 1;
-						rngNum = rand() % 3;
-						sf::Vector2f newPos = (vertices[rngNum] + dot.getPosition()) / 2.f;
-						generatedPoints.push_back(newPos); 
-						dot.setPosition(newPos);
-						window.draw(dot);
-						rngNum = rand() % 3;
-						newPos = (vertices[rngNum] + dot.getPosition()) / 2.f;
-						generatedPoints.push_back(newPos);
-						dot.setPosition(newPos);
-						window.draw(dot);
-						rngNum = rand() % 3;
-						newPos = (vertices[rngNum] + dot.getPosition()) / 2.f;
-						generatedPoints.push_back(newPos);
-						dot.setPosition(newPos);
-						window.draw(dot);
-						rngNum = rand() % 3;
-						newPos = (vertices[rngNum] + dot.getPosition()) / 2.f;
-						generatedPoints.push_back(newPos);
+						for (j = 0; j < 10; j++)
+						{
+							if (i == 3) dot.setPosition(mousePos);				// draws inside dots, lots of instances per click to make it fast, i value?
+							i += 1;
+							rngNum = rand() % 3;
+							sf::Vector2f newPos = (vertices[rngNum] + dot.getPosition()) / 2.f;
+							generatedPoints.push_back(newPos); //not needed
+							dot.setPosition(newPos);
+							window.draw(dot);
+						}
 					}
 				}
 				break;
